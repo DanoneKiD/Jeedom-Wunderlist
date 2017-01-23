@@ -1,0 +1,24 @@
+[NOTE]
+====
+Pour pouvoir intéragir avec vos listes, il faut au préalable créer une "*APP*" sur le site de Wunderlist et obtenir 3 informations qui nous serviront pour la suite.
+====
+
+Allez sur https://developer.wunderlist.com/apps et connectez-vous avec votre compte Wunderlist (vous pouvez aussi utiliser *Facebook*, *Google* ou *Microsoft*).
+
+image::..\images\config-api-5a65b.png[]
+
+Vous tombez sur une page ou vous pouvez créer votre *APP*.
+
+image::..\images\config-api-88a5d.png[]
+
+
+. Le nom de votre APP ex : *Jeedom*
+. Une url quelconque *http://localhost*
+. Idem pour l'URL de Callback  *http://localhost*
+. Cliquez sur *Save*
+
+image::..\images\config-api-adea4.png[]
+
+Vous tombez sur cette page ou il faudra relever le *Client ID*, le *Client Secret* et générer un *Access Token* en cliquant sur *Create Access Token*.
+
+image::..\images\config-api-3b049.png[]

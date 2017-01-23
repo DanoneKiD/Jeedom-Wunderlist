@@ -1,0 +1,7 @@
+{
+    "require": {
+        "johnrivs/wunderlist": "^0.12.0",
+        "flow/jsonpath": "dev-master"
+
+    }
+}

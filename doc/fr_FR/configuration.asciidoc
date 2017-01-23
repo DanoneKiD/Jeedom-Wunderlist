@@ -1,0 +1,3 @@
+Après téléchargement du plugin, il vous suffit juste d’activer celui-ci, il n’y a aucune configuration supplémentaire à ce niveau là.
+
+image::../images/doc_config.png[Config]

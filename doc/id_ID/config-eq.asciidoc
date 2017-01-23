@@ -1,0 +1,29 @@
+Allez sur la page du plugin : *Plugins* -> *Organisation* -> *Wunderlist*
+
+image::..\images\config-eq-99022.png[]
+
+Cliquez sur *Ajouter*
+
+image::..\images\config-eq-c9318.png[]
+
+Saisissez un *nom* pour votre liste
+
+image::..\images\config-eq-d8168.png[]
+
+image::..\images\config-eq-c9740.png[]
+
+. Le nom de votre liste
+. Activer l'équipement
+. Saisissez le *Client ID* relevé précédemment sur le site https://developer.wunderlist.com/apps
+. Le *Client Secret*
+. l'*Access Token*
+
+Cliquez ensuite sur *Sauvegarder* pour vous connecter à Wunderlist et ainsi récupérer vos listes.
+
+image::..\images\config-eq-2b6d2.png[]
+
+Sélectionnez votre liste et re-cliquer sur *Sauvegarder*
+
+Vous avez maintenant à votre disposition 3 commandes Actions que vous pouvez utiliser dans Jeedom (ex : dans des scénarios).
+
+image::..\images\config-eq-9eb14.png[]
