@@ -1,0 +1,12 @@
+{
+	"id" : "jeeWunderlist",
+	"name" : "Wunderlist",
+	"description" : "Plugin pour gérer ses listes Wunderlist",
+	"licence" : "AGPL",
+	"author" : "DanoneKiD",
+	"require" : "2.4",
+	"category" : "organization",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0
+}
