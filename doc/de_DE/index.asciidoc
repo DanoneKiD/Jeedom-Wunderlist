@@ -8,10 +8,10 @@ include::description.asciidoc[]
 == Installation
 include::installation.asciidoc[]
 
-== Configuration
+== Konfiguration
 
 '''
-=== Configuration du plugin
+=== Plugin Konfiguration
 include::configuration.asciidoc[]
 
 '''
