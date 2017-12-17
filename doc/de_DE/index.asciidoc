@@ -15,11 +15,11 @@ include::installation.asciidoc[]
 include::configuration.asciidoc[]
 
 '''
-=== Configuration de l'API Wunderlist
+=== Wunderlist-API Konfiguration
 include::config-api.asciidoc[]
 
 '''
-=== Configuration des équipements
+=== Geräte Konfiguration
 include::config-eq.asciidoc[]
 
 '''
