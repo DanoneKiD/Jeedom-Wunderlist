@@ -1,24 +1,24 @@
 [NOTE]
 ====
-Pour pouvoir intéragir avec vos listes, il faut au préalable créer une "*APP*" sur le site de Wunderlist et obtenir 3 informations qui nous serviront pour la suite.
+Um mit Ihren Listen zu interagieren, müssen Sie zunächst eine "*APP*" auf der Website Wunderlist erstellen und erhalten 3 Informationen, die uns für die Zukunft dienen.
 ====
 
-Allez sur https://developer.wunderlist.com/apps et connectez-vous avec votre compte Wunderlist (vous pouvez aussi utiliser *Facebook*, *Google* ou *Microsoft*).
+Gehen Sie auf https://developer.wunderlist.com/apps und melden Sie sich mit Ihrem Wunderlist-Account an (Sie können auch *Facebook*, *Google* oder *Microsoft*) verwenden.
 
 image::..\images\config-api-5a65b.png[]
 
-Vous tombez sur une page ou vous pouvez créer votre *APP*.
+Sie kommen auf eine Seite oder Sie können Ihre *APP* erstellen.
 
 image::..\images\config-api-88a5d.png[]
 
 
-. Le nom de votre APP ex : *Jeedom*
-. Une url quelconque *http://localhost*
-. Idem pour l'URL de Callback  *http://localhost*
-. Cliquez sur *Save*
+. Der Name Ihrer App z.B.: *Jeedom*
+. Eine beliebige URL *http://localhost*
+. Gleich für die Rückruf-URL *http://localhost*
+. Klicken Sie auf *Speichern*
 
 image::..\images\config-api-adea4.png[]
 
-Vous tombez sur cette page ou il faudra relever le *Client ID*, le *Client Secret* et générer un *Access Token* en cliquant sur *Create Access Token*.
+Sie kommen auf diese Seite, wo Sie die *Client ID*, *Secret Client* abfragen und *Access Token* generieren müssen, indem Sie auf *Create Access Token* klicken.
 
 image::..\images\config-api-3b049.png[]

@@ -1,7 +1,7 @@
 = Wunderlist
 
 '''
-== Description
+== Beschreibung
 include::description.asciidoc[]
 
 '''
