@@ -1,25 +1,25 @@
 = Wunderlist
 
 '''
-== Description
+== Beschreibung
 include::description.asciidoc[]
 
 '''
 == Installation
 include::installation.asciidoc[]
 
-== Configuration
+== Konfiguration
 
 '''
-=== Configuration du plugin
+=== Plugin Konfiguration
 include::configuration.asciidoc[]
 
 '''
-=== Configuration de l'API Wunderlist
+=== Wunderlist-API Konfiguration
 include::config-api.asciidoc[]
 
 '''
-=== Configuration des équipements
+=== Geräte Konfiguration
 include::config-eq.asciidoc[]
 
 '''
