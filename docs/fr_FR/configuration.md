@@ -2,7 +2,7 @@
 
 ## Configuration du plugin
 
-Après téléchargement du plugin, il faut l’activer, celui-ci ne nécessite aucune autre configuration. 
+Après téléchargement du plugin, il faut l’activer, celui-ci ne nécessite aucune autre configuration.
 
 ![Config](../images/doc_config.png)
 
@@ -12,7 +12,7 @@ Après téléchargement du plugin, il faut l’activer, celui-ci ne nécessite a
 >
 > Pour pouvoir intéragir avec vos listes, il faut au préalable créer une
 > "**APP**" sur le site de Wunderlist et obtenir 3 informations qui nous
-> serviront pour la suite. 
+> serviront pour la suite.
 
 Allez sur <https://developer.wunderlist.com/apps> et connectez-vous avec
 votre compte Wunderlist (vous pouvez aussi utiliser **Facebook**,
