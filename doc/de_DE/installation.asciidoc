@@ -1,4 +1,0 @@
-Dieses Plugin benötigt keine spezielle Installation.
-
-Siehe https://www.jeedom.fr/doc/documentation/core/fr_FR/doc-core-plugin.html[*Die Installation eines Plugins*]
- kbd:[Strg + Mausklick] (um in einem neuen Tab zu öffnen)
