@@ -1,12 +1,13 @@
 # Configuration
 
-
 ## Configuration du plugin
+
 Après téléchargement du plugin, il faut l’activer, celui-ci ne nécessite aucune autre configuration. 
 
 ![Config](../images/doc_config.png)
 
 ## Configuration de l'API Wunderlist
+
 > **Note**
 >
 > Pour pouvoir intéragir avec vos listes, il faut au préalable créer une
@@ -23,13 +24,13 @@ Vous tombez sur une page ou vous pouvez créer votre **APP**.
 
 ![..\\images\\config api 88a5d](../images/config-api-88a5d.png)
 
-1.  Le nom de votre APP ex : **Jeedom**
+1. Le nom de votre APP ex : **Jeedom**
 
-2.  Une url quelconque **<http://localhost>**
+2. Une url quelconque **<http://localhost>**
 
-3.  Idem pour l’URL de Callback **<http://localhost>**
+3. Idem pour l’URL de Callback **<http://localhost>**
 
-4.  Cliquez sur **Save**
+4. Cliquez sur **Save**
 
 ![..\\images\\config api adea4](../images/config-api-adea4.png)
 
@@ -56,16 +57,16 @@ Saisissez un **nom** pour votre liste
 
 ![..\\images\\config eq c9740](../images/config-eq-c9740.png)
 
-1.  Le nom de votre liste
+1. Le nom de votre liste
 
-2.  Activer l’équipement
+2. Activer l’équipement
 
-3.  Saisissez le **Client ID** relevé précédemment sur le site
+3. Saisissez le **Client ID** relevé précédemment sur le site
     <https://developer.wunderlist.com/apps>
 
-4.  Le **Client Secret**
+4. Le **Client Secret**
 
-5.  l'**Access Token**
+5. L'**Access Token**
 
 Cliquez ensuite sur **Sauvegarder** pour vous connecter à Wunderlist et
 ainsi récupérer vos listes.

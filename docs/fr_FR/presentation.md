@@ -1,8 +1,5 @@
 # Description
 
-Wunderlist, restez synchronisé
-------------------------------
-
 Wunderlist est la manière la plus simple de mener à bien toutes vos
 tâches. Que vous souhaitiez planifier vos vacances, partager une liste
 de courses avec votre partenaire ou gérer plusieurs projets
