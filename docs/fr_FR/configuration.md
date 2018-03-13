@@ -1,12 +1,12 @@
 # Configuration
 
 
-### Configuration du plugin
+## Configuration du plugin
 Après téléchargement du plugin, il faut l’activer, celui-ci ne nécessite aucune autre configuration. 
 
 ![Config](../images/doc_config.png)
 
-### Configuration des équipements
+## Configuration de l'API Wunderlist
 > **Note**
 >
 > Pour pouvoir intéragir avec vos listes, il faut au préalable créer une
@@ -39,8 +39,7 @@ Vous tombez sur cette page ou il faudra relever le **Client ID**, le
 
 ![..\\images\\config api 3b049](../images/config-api-3b049.png)
 
-Configuration des équipements
------------------------------
+## Configuration des équipements
 
 Allez sur la page du plugin : **Plugins** → **Organisation** →
 **Wunderlist**
