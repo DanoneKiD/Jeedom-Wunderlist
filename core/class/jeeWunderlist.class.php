@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* * ***************************Includes********************************* */
 use JohnRivs\Wunderlist\Wunderlist;
 
 require_once dirname(__FILE__).'/../../../../core/php/core.inc.php';
@@ -24,7 +22,6 @@ require_once dirname(__FILE__).'/../../3rparty/vendor/autoload.php';
 
 class jeeWunderlist extends eqLogic
 {
-    /*     * *************************Attributs****************************** */
 
     public static function removeAccents($string)
     {
@@ -42,12 +39,10 @@ class jeeWunderlist extends eqLogic
       $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
 
       //log::add('jeeWunderlist', 'debug', 'Chargement des information de l\'utilisateur');
-      $this->setConfiguration('userDetails', $wunderlist->getCurrentUser());
+        $this->setConfiguration('userDetails', $wunderlist->getCurrentUser());
         $this->setConfiguration('userAvatar', $wunderlist->getAvatar());
         $this->setConfiguration('userLists', $wunderlist->getLists());
     }
-
-    /*     * ***********************Methode static*************************** */
 
     /*
      * Fonction exécutée automatiquement toutes les minutes par Jeedom
@@ -83,7 +78,7 @@ class jeeWunderlist extends eqLogic
                       $tasks = $wunderlist->getTasks(['list_id' => $listId]);
                       $eqLogic->setConfiguration('tasks', $tasks);
                   } else {
-                      throw new Exception(__('List ID : '.$listId.' unknown.', __FILE__));
+                      throw new \Exception(__('List ID : '.$listId.' unknown.', __FILE__));
                   }
               }
           }
@@ -96,8 +91,7 @@ class jeeWunderlist extends eqLogic
       }
      */
 
-    /*     * *********************Méthodes d'instance************************* */
-
+    /*     
     public function preInsert()
     {
     }
@@ -109,7 +103,7 @@ class jeeWunderlist extends eqLogic
     public function preSave()
     {
     }
-
+    */
     public function postSave()
     {
         if (!$this->getId()) {
@@ -118,14 +112,14 @@ class jeeWunderlist extends eqLogic
 
         $addTask = $this->getCmd(null, 'addTask');
         if (!is_object($addTask)) {
-            $addTask = new jeeWunderlistCmd();
-            $addTask->setLogicalId('addTask');
-            $addTask->setIsVisible(0);
-            $addTask->setName(__('Ajouter une tâche', __FILE__));
+            $addTask = (new jeeWunderlistCmd())
+                ->setLogicalId('addTask')
+                ->setIsVisible(0)
+                ->setName(__('Ajouter une tâche', __FILE__));
         }
-        $addTask->setType('action');
-        $addTask->setSubType('message');
-        $addTask->setEqLogic_id($this->getId());
+        $addTask->setType('action')
+            ->setSubType('message')
+            ->setEqLogic_id($this->getId());
         $addTask->save();
 
         $removeTask = $this->getCmd(null, 'removeTask');
@@ -156,19 +150,19 @@ class jeeWunderlist extends eqLogic
     public function preUpdate()
     {
         if ($this->getConfiguration('clientId') == '') {
-            throw new Exception(__('Le <strong>Client ID</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('Le <strong>Client ID</strong> ne peut etre vide', __FILE__));
         }
         if ($this->getConfiguration('clientSecret') == '') {
-            throw new Exception(__('Le <strong>Client Secret</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('Le <strong>Client Secret</strong> ne peut etre vide', __FILE__));
         }
         if ($this->getConfiguration('accessToken') == '') {
-            throw new Exception(__('L\'<strong>Access Token</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('L\'<strong>Access Token</strong> ne peut etre vide', __FILE__));
         }
 
         $this->UpdateUserDetails();
     }
 
-    public function postUpdate()
+   /* public function postUpdate()
     {
     }
 
@@ -178,7 +172,7 @@ class jeeWunderlist extends eqLogic
 
     public function postRemove()
     {
-    }
+    }*/
 
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
@@ -186,18 +180,10 @@ class jeeWunderlist extends eqLogic
 
       }
      */
-
-    /*     * **********************Getteur Setteur*************************** */
 }
 
 class jeeWunderlistCmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-
-    /*     * ***********************Methode static*************************** */
-
-    /*     * *********************Methode d'instance************************* */
-
     /*
      * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
       public function dontRemoveCmd() {
@@ -234,7 +220,7 @@ class jeeWunderlistCmd extends cmd
             $tasks = $wunderlist->getTasks(['list_id' => $listId]);
             $eqLogic->setConfiguration('tasks', $tasks);
         } else {
-            throw new Exception(__('List ID : '.$listId.' unknown.', __FILE__));
+            throw new \Exception(__('List ID : '.$listId.' unknown.', __FILE__));
         }
 
         /**************************************
@@ -285,6 +271,4 @@ class jeeWunderlistCmd extends cmd
             log::add('jeeWunderlist', 'info', 'Task "'.$_options['message'].'" not found in list ID : '.$listId);
         }
     }
-
-    /*     * **********************Getteur Setteur*************************** */
 }
