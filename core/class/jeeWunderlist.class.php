@@ -15,8 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
-/* * ***************************Includes********************************* */
 use JohnRivs\Wunderlist\Wunderlist;
 
 require_once dirname(__FILE__).'/../../../../core/php/core.inc.php';
@@ -24,8 +22,6 @@ require_once dirname(__FILE__).'/../../3rparty/vendor/autoload.php';
 
 class jeeWunderlist extends eqLogic
 {
-    /*     * *************************Attributs****************************** */
-
     public static function removeAccents($string)
     {
         return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8'))), ' '));
@@ -46,8 +42,6 @@ class jeeWunderlist extends eqLogic
         $this->setConfiguration('userAvatar', $wunderlist->getAvatar());
         $this->setConfiguration('userLists', $wunderlist->getLists());
     }
-
-    /*     * ***********************Methode static*************************** */
 
     /*
      * Fonction exécutée automatiquement toutes les minutes par Jeedom
@@ -96,9 +90,7 @@ class jeeWunderlist extends eqLogic
       }
      */
 
-    /*     * *********************Méthodes d'instance************************* */
-
-    public function preInsert()
+    /*public function preInsert()
     {
     }
 
@@ -108,7 +100,7 @@ class jeeWunderlist extends eqLogic
 
     public function preSave()
     {
-    }
+    }*/
 
     public function postSave()
     {
@@ -168,7 +160,7 @@ class jeeWunderlist extends eqLogic
         $this->UpdateUserDetails();
     }
 
-    public function postUpdate()
+    /*public function postUpdate()
     {
     }
 
@@ -178,7 +170,7 @@ class jeeWunderlist extends eqLogic
 
     public function postRemove()
     {
-    }
+    }*/
 
     /*
      * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
@@ -186,17 +178,10 @@ class jeeWunderlist extends eqLogic
 
       }
      */
-
-    /*     * **********************Getteur Setteur*************************** */
 }
 
 class jeeWunderlistCmd extends cmd
 {
-    /*     * *************************Attributs****************************** */
-
-    /*     * ***********************Methode static*************************** */
-
-    /*     * *********************Methode d'instance************************* */
 
     /*
      * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
@@ -234,7 +219,7 @@ class jeeWunderlistCmd extends cmd
             $tasks = $wunderlist->getTasks(['list_id' => $listId]);
             $eqLogic->setConfiguration('tasks', $tasks);
         } else {
-            throw new Exception(__('List ID : '.$listId.' unknown.', __FILE__));
+            throw new \Exception(__('List ID : '.$listId.' unknown.', __FILE__));
         }
 
         /**************************************
@@ -285,6 +270,4 @@ class jeeWunderlistCmd extends cmd
             log::add('jeeWunderlist', 'info', 'Task "'.$_options['message'].'" not found in list ID : '.$listId);
         }
     }
-
-    /*     * **********************Getteur Setteur*************************** */
 }
