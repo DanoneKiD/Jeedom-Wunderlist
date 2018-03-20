@@ -21,31 +21,29 @@ try {
     include_file('core', 'authentification', 'php');
 
     if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
+        throw new \Exception(__('401 - Accès non autorisé', __FILE__));
     }
 
     if (init('action') == 'getUserDetails') {
             $id = init('id');
             $mem = jeeWunderlist::byId(init('id'));
             if (!is_object($mem)) {
-                throw new Exception(__('Equipement inconnu verifié l\'id '.$id, __FILE__));
+                throw new \Exception(__('Equipement inconnu verifié l\'id '.$id, __FILE__));
             }
 
-            $return['userAvatar'] = $mem->getConfiguration("userAvatar");
+            $return['userAvatar']  = $mem->getConfiguration("userAvatar");
             $return['userDetails'] = $mem->getConfiguration("userDetails");
-            $return['userLists'] = $mem->getConfiguration("userLists");
-            $return['listId'] = $mem->getConfiguration("listId");
+            $return['userLists']   = $mem->getConfiguration("userLists");
+            $return['listId']      = $mem->getConfiguration("listId");
+        
             if ($return['userAvatar'] == '')
               ajax::error("Eror");
               
             ajax::success($return);
-
         }
 
-
-    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+    throw new \Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+} catch (\Exception $e) {
+    ajax::error(displayException($e), $e->getCode());
 }
-?>
+ 
