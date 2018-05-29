@@ -15,13 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
 use JohnRivs\Wunderlist\Wunderlist;
 
-require_once dirname(__FILE__).'/../../../../core/php/core.inc.php';
-require_once dirname(__FILE__).'/../../3rparty/vendor/autoload.php';
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
+require_once __DIR__ . '/../../3rparty/vendor/autoload.php';
 
 class jeeWunderlist extends eqLogic
 {
+
     public static function removeAccents($string)
     {
         return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', preg_replace('~&([a-z]{1,2})(acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8'))), ' '));
@@ -30,77 +32,52 @@ class jeeWunderlist extends eqLogic
     public function UpdateUserDetails()
     {
 
-      // Paramètre API
-      $clientId = $this->getConfiguration('clientId');
-      $clientSecret = $this->getConfiguration('clientSecret');
-      $accessToken = $this->getConfiguration('accessToken');
+        // Paramètre API
+        $clientId     = $this->getConfiguration('clientId');
+        $clientSecret = $this->getConfiguration('clientSecret');
+        $accessToken  = $this->getConfiguration('accessToken');
 
-      $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
+        $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
 
-      //log::add('jeeWunderlist', 'debug', 'Chargement des information de l\'utilisateur');
-      $this->setConfiguration('userDetails', $wunderlist->getCurrentUser());
+        //log::add('jeeWunderlist', 'debug', 'Chargement des information de l\'utilisateur');
+        $this->setConfiguration('userDetails', $wunderlist->getCurrentUser());
         $this->setConfiguration('userAvatar', $wunderlist->getAvatar());
         $this->setConfiguration('userLists', $wunderlist->getLists());
     }
 
     /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
-      public static function cron() {
-
-      }
-     */
-
-    /*
      * Fonction exécutée automatiquement toutes les heures par Jeedom
      */
-      public static function cron15()
-      {
-          $eqLogics = eqLogic::byType('jeeWunderlist');
-          foreach ($eqLogics as $eqLogic) {
-              if ($eqLogic->isEnable) { // Juste les équipements actifs
-                  log::add('jeeWunderlist', 'debug', 'Cron : '.$eqLogic->name);
 
-        // Paramètre API /
-        $clientId = $eqLogic->getConfiguration('clientId');
-                  $clientSecret = $eqLogic->getConfiguration('clientSecret');
-                  $accessToken = $eqLogic->getConfiguration('accessToken');
-
-        // Connexion à l'API //
-        $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
-
-        // Cherche la Liste //
-        $listId = $eqLogic->getConfiguration('listId');
-                  $listId = intval($listId);
-                  if ($listId != 0) {
-                      // Refresh de la liste //
-                  log::add('jeeWunderlist', 'debug', 'Cron : '.$eqLogic->name.' - Reload list ID : '.$listId);
-                      $tasks = $wunderlist->getTasks(['list_id' => $listId]);
-                      $eqLogic->setConfiguration('tasks', $tasks);
-                  } else {
-                      throw new Exception(__('List ID : '.$listId.' unknown.', __FILE__));
-                  }
-              }
-          }
-      }
-
-    /*
-     * Fonction exécutée automatiquement tous les jours par Jeedom
-      public static function cronDayly() {
-
-      }
-     */
-
-    /*public function preInsert()
+    public static function cron15()
     {
+        $eqLogics = eqLogic::byType('jeeWunderlist');
+        foreach ($eqLogics as $eqLogic) {
+            if ($eqLogic->isEnable) { // Juste les équipements actifs
+                log::add('jeeWunderlist', 'debug', 'Cron : ' . $eqLogic->name);
+
+                // Paramètre API /
+                $clientId     = $eqLogic->getConfiguration('clientId');
+                $clientSecret = $eqLogic->getConfiguration('clientSecret');
+                $accessToken  = $eqLogic->getConfiguration('accessToken');
+
+                // Connexion à l'API //
+                $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
+
+                // Cherche la Liste //
+                $listId = $eqLogic->getConfiguration('listId');
+                $listId = intval($listId);
+                if ($listId != 0) {
+                    // Refresh de la liste //
+                    log::add('jeeWunderlist', 'debug', 'Cron : ' . $eqLogic->name . ' - Reload list ID : ' . $listId);
+                    $tasks = $wunderlist->getTasks(['list_id' => $listId]);
+                    $eqLogic->setConfiguration('tasks', $tasks);
+                } else {
+                    throw new Exception(__('List ID : ' . $listId . ' unknown.', __FILE__));
+                }
+            }
+        }
     }
-
-    public function postInsert()
-    {
-    }
-
-    public function preSave()
-    {
-    }*/
 
     public function postSave()
     {
@@ -148,41 +125,22 @@ class jeeWunderlist extends eqLogic
     public function preUpdate()
     {
         if ($this->getConfiguration('clientId') == '') {
-            throw new Exception(__('Le <strong>Client ID</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('Le <strong>Client ID</strong> ne peut etre vide', __FILE__));
         }
         if ($this->getConfiguration('clientSecret') == '') {
-            throw new Exception(__('Le <strong>Client Secret</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('Le <strong>Client Secret</strong> ne peut etre vide', __FILE__));
         }
         if ($this->getConfiguration('accessToken') == '') {
-            throw new Exception(__('L\'<strong>Access Token</strong> ne peut etre vide', __FILE__));
+            throw new \Exception(__('L\'<strong>Access Token</strong> ne peut etre vide', __FILE__));
         }
 
         $this->UpdateUserDetails();
     }
 
-    /*public function postUpdate()
-    {
-    }
-
-    public function preRemove()
-    {
-    }
-
-    public function postRemove()
-    {
-    }*/
-
-    /*
-     * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
-      public function toHtml($_version = 'dashboard') {
-
-      }
-     */
 }
 
 class jeeWunderlistCmd extends cmd
 {
-
     /*
      * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
       public function dontRemoveCmd() {
@@ -190,84 +148,85 @@ class jeeWunderlistCmd extends cmd
       }
      */
 
-     public function preSave()
-     {
-         if ($this->getSubtype() == 'message') {
-             $this->setDisplay('title_disable', 1);
-         }
-     }
+    public function preSave()
+    {
+        if ($this->getSubtype() == 'message') {
+            $this->setDisplay('title_disable', 1);
+        }
+    }
 
     public function execute($_options = array())
     {
         // L'équipement
-      $eqLogic = $this->getEqLogic();
+        $eqLogic = $this->getEqLogic();
 
-      // Paramètre API
-      $clientId = $eqLogic->getConfiguration('clientId');
+        // Paramètre API
+        $clientId     = $eqLogic->getConfiguration('clientId');
         $clientSecret = $eqLogic->getConfiguration('clientSecret');
-        $accessToken = $eqLogic->getConfiguration('accessToken');
+        $accessToken  = $eqLogic->getConfiguration('accessToken');
 
-      // Connexion à l'API
-      $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
+        // Connexion à l'API
+        $wunderlist = new Wunderlist($clientId, $clientSecret, $accessToken);
 
-      // Cherche la Liste
-      $listId = $eqLogic->getConfiguration('listId');
+        // Cherche la Liste
+        $listId = $eqLogic->getConfiguration('listId');
         $listId = intval($listId);
         if ($listId != 0) {
             // Refresh de la liste
-        log::add('jeeWunderlist', 'debug', 'Reload list ID : '.$listId);
+            log::add('jeeWunderlist', 'debug', 'Reload list ID : ' . $listId);
             $tasks = $wunderlist->getTasks(['list_id' => $listId]);
             $eqLogic->setConfiguration('tasks', $tasks);
         } else {
-            throw new \Exception(__('List ID : '.$listId.' unknown.', __FILE__));
+            throw new \Exception(__('List ID : ' . $listId . ' unknown.', __FILE__));
         }
 
-        /**************************************
+        /*         * ************************************
           Ajout d'une tâche
-        ***************************************/
+         * ************************************* */
         if ($this->logicalId == 'addTask') {
             // On ajoute uniquement si pas déjà dans la liste
-          foreach ($tasks as $task) {
-              if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
-                  log::add('jeeWunderlist', 'info', 'Skip adding task "'.$_options['message'].'" to the list, because already exist.');
+            foreach ($tasks as $task) {
+                if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
+                    log::add('jeeWunderlist', 'info', 'Skip adding task "' . $_options['message'] . '" to the list, because already exist.');
 
-                  return;
-              }
-          }
-            log::add('jeeWunderlist', 'info', 'Add task "'.$_options['message'].'" to list ID : '.$listId);
+                    return;
+                }
+            }
+            log::add('jeeWunderlist', 'info', 'Add task "' . $_options['message'] . '" to list ID : ' . $listId);
             $wunderlist->createTask(['list_id' => $listId, 'title' => $_options['message']]);
         }
 
-        /**************************************
+        /*         * ************************************
           Suppression d'une tâche
-        ***************************************/
+         * ************************************* */
         if ($this->logicalId == 'removeTask') {
             // On cherche l'ID de la task dans la liste
-          foreach ($tasks as $task) {
-              if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
-                  log::add('jeeWunderlist', 'info', 'Delete task "'.$_options['message'].'" from the list ID : '.$listId);
-                  $wunderlist->deleteTask($task['id']);
+            foreach ($tasks as $task) {
+                if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
+                    log::add('jeeWunderlist', 'info', 'Delete task "' . $_options['message'] . '" from the list ID : ' . $listId);
+                    $wunderlist->deleteTask($task['id']);
 
-                  return;
-              }
-          }
-            log::add('jeeWunderlist', 'info', 'Task "'.$_options['message'].'" not found in list ID : '.$listId);
+                    return;
+                }
+            }
+            log::add('jeeWunderlist', 'info', 'Task "' . $_options['message'] . '" not found in list ID : ' . $listId);
         }
 
-        /**************************************
+        /*         * ************************************
           Réaliser une tâche
-        ***************************************/
+         * ************************************* */
         if ($this->logicalId == 'completeTask') {
             // On cherche l'ID de la task dans la liste
-          foreach ($tasks as $task) {
-              if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
-                  log::add('jeeWunderlist', 'info', 'Completing task "'.$_options['message'].'" from the list ID : '.$listId);
-                  $wunderlist->updateTask($task['id'], ['completed' => true]);
+            foreach ($tasks as $task) {
+                if (jeeWunderlist::removeAccents($task['title']) == jeeWunderlist::removeAccents($_options['message'])) {
+                    log::add('jeeWunderlist', 'info', 'Completing task "' . $_options['message'] . '" from the list ID : ' . $listId);
+                    $wunderlist->updateTask($task['id'], ['completed' => true]);
 
-                  return;
-              }
-          }
-            log::add('jeeWunderlist', 'info', 'Task "'.$_options['message'].'" not found in list ID : '.$listId);
+                    return;
+                }
+            }
+            log::add('jeeWunderlist', 'info', 'Task "' . $_options['message'] . '" not found in list ID : ' . $listId);
         }
     }
+
 }
